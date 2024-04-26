@@ -9,6 +9,7 @@ module "vpc_with_subnets" {
 
   # region where the resources need to be created
   region = var.region
+  project_id = var.project_id
 
   cidrBlock = var.cidrBlock
 }
@@ -21,6 +22,7 @@ module "gke_with_node_group" {
   cluster_name = var.cluster_name
   k8s_version  = var.k8s_version
   region       = var.region
+  project_id = var.project_id
   nodepools    = var.nodepools
   network      = module.vpc_with_subnets.vpc_self_link
   subnetwork   = module.vpc_with_subnets.subnet_self_link
