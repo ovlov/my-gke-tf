@@ -23,6 +23,7 @@ locals {
 # allows management of a single API service for a Google Cloud Platform project.
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/google_project_service
 resource "google_project_service" "main" {
+  project = "my-k8s-project-343602"
   for_each           = local.services
   service            = "${each.value}.googleapis.com"
   disable_on_destroy = false
