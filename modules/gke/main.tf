@@ -33,6 +33,7 @@ resource "google_project_service" "main" {
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/data-sources/compute_zones
 data "google_compute_zones" "available" {
   region     = var.region
+  project = "my-k8s-project-343602"
   status     = "UP"
   depends_on = [google_project_service.main]
 }
@@ -40,6 +41,7 @@ data "google_compute_zones" "available" {
 # to retrieve the latest k8s version supported for the provided k8s version in a region
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/data-sources/container_engine_versions
 data "google_container_engine_versions" "main" {
+  project = "my-k8s-project-343602"
   location = var.region
 
   # Since this is just a string match, it's recommended that you append a . after minor versions 
