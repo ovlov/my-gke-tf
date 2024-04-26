@@ -14,3 +14,9 @@ variable "k8s_version" {
   description = "k8s version"
   default     = "1.27"
 }
+
+variable "project_id" {
+  type = string
+  description = "prject id for my project"
+  default = "my-k8s-project-343602"
+}
