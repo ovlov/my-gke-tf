@@ -1,7 +1,7 @@
 # to use s3 backend 
 # s3 bucket is configured at command line
 terraform {
-  backend "s3" {}
+  backend "gcs" {}
 }
 
 # setup google provider
