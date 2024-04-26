@@ -10,6 +10,7 @@ terraform {
 
 # VPC - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/compute_network
 resource "google_compute_network" "vpc" {
+  project = "my-k8s-project-343602"
   name        = var.vpc_name
   description = var.vpc_description
 
