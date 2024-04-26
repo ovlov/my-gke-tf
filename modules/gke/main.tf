@@ -97,8 +97,8 @@ resource "google_container_node_pool" "nodepools" {
   node_config {
     machine_type = each.value.machine_type
     labels       = each.value.node_labels
-    disk_size_gb = each.value.disk_size_gb
-    disk_type = each.value.disk_type
+#    disk_size_gb = each.value.disk_size_gb
+#    disk_type = each.value.disk_type
   }
 
   lifecycle {

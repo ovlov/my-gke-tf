@@ -35,8 +35,8 @@ variable "nodepools" {
     node_count   = number
     node_labels  = map(any)
     machine_type = string
-    disk_size_gb = number
-    disk_type = string
+#    disk_size_gb = number
+#    disk_type = string
   }))
   default = {
     worker = {
