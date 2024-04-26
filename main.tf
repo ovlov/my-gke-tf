@@ -1,8 +1,12 @@
 # to use s3 backend 
 # s3 bucket is configured at command line
 terraform {
-  backend "gcs" {}
+  backend "gcs" {
+    bucket  = "devops_demo"
+    prefix  = "terraform/state"
+  }
 }
+
 
 # setup google provider
 # the environment variables below will be set before invoking the module
