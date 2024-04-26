@@ -35,12 +35,17 @@ variable "nodepools" {
     node_count   = number
     node_labels  = map(any)
     machine_type = string
+    disk_size_gb = number
+    disk_type = string
   }))
   default = {
     worker = {
       name         = "worker"
       node_labels  = { "worker-name" = "worker" }
       machine_type = "n1-standard-1"
+      disk_size_gb = 50
+      disk_type = "pd-standard"
+#      tags         = ["gke-node", "${var.project_id}-gke"]
       node_count   = 1
     }
   }
