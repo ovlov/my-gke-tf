@@ -14,6 +14,10 @@ variable "region" {
   description = "gcp region where the gke cluster must be created, this region should match where you have created the vpc and subnet"
 }
 
+variable "project_id" {
+  type = string
+  description = "To define my projectid"
+}
 variable "cidrBlock" {
   type        = string
   description = "The cidr block for subnet"
