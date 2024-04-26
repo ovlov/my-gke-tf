@@ -10,7 +10,7 @@ terraform {
 
 # VPC - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/compute_network
 resource "google_compute_network" "vpc" {
-  project = "my-k8s-project-343602"
+  project = var.project_id
   name        = var.vpc_name
   description = var.vpc_description
 
@@ -21,7 +21,7 @@ resource "google_compute_network" "vpc" {
 
 # Subnet - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/compute_subnetwork
 resource "google_compute_subnetwork" "subnet" {
-  project = "my-k8s-project-343602"
+  project = var.project_id
   name          = var.subnet_name
   description   = var.subnet_description
   region        = var.region

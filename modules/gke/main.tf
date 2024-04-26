@@ -23,7 +23,7 @@ locals {
 # allows management of a single API service for a Google Cloud Platform project.
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/google_project_service
 resource "google_project_service" "main" {
-  project = "my-k8s-project-343602"
+  project = var.project_id
   for_each           = local.services
   service            = "${each.value}.googleapis.com"
   disable_on_destroy = false
@@ -33,7 +33,7 @@ resource "google_project_service" "main" {
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/data-sources/compute_zones
 data "google_compute_zones" "available" {
   region     = var.region
-  project = "my-k8s-project-343602"
+  project = var.project_id
   status     = "UP"
   depends_on = [google_project_service.main]
 }
@@ -41,7 +41,7 @@ data "google_compute_zones" "available" {
 # to retrieve the latest k8s version supported for the provided k8s version in a region
 # official documentation - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/data-sources/container_engine_versions
 data "google_container_engine_versions" "main" {
-  project = "my-k8s-project-343602"
+  project = var.project_id
   location = var.region
 
   # Since this is just a string match, it's recommended that you append a . after minor versions 
@@ -53,7 +53,7 @@ data "google_container_engine_versions" "main" {
 
 # GKE cluster - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/container_cluster
 resource "google_container_cluster" "gke" {
-  project = "my-k8s-project-343602"
+  project = var.project_id
   name               = var.cluster_name
   location           = var.region
   node_locations     = local.zones
@@ -79,14 +79,14 @@ resource "google_container_node_pool" "nodepools" {
   for_each = var.nodepools
 
   name       = each.value.name
-  project = "my-k8s-project-343602"
+  project = var.project_id
   location   = var.region
   cluster    = var.cluster_name
   node_count = each.value.node_count
 
   autoscaling {
     min_node_count = "0"
-    max_node_count = "100"
+    max_node_count = "10"
   }
 
   management {
