@@ -53,6 +53,7 @@ data "google_container_engine_versions" "main" {
 
 # GKE cluster - https://registry.terraform.io/providers/hashicorp/google/4.74.0/docs/resources/container_cluster
 resource "google_container_cluster" "gke" {
+  project = "my-k8s-project-343602"
   name               = var.cluster_name
   location           = var.region
   node_locations     = local.zones
@@ -78,6 +79,7 @@ resource "google_container_node_pool" "nodepools" {
   for_each = var.nodepools
 
   name       = each.value.name
+  project = "my-k8s-project-343602"
   location   = var.region
   cluster    = var.cluster_name
   node_count = each.value.node_count
