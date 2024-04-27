@@ -10,7 +10,7 @@ terraform {
 
 locals {
 
-  zones = slice(data.google_compute_zones.available.names, 0, 3)
+  zones = slice(data.google_compute_zones.available.names, 0, 2)
 
   # we only care about compute and container service here hence only enabling these project services
   # without cloudresourcemanager we get errors
